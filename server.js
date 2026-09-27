@@ -29,8 +29,10 @@ const path = require('path');
 })();
 
 const ROOT = __dirname;
-for (const dir of ['data', path.join('uploads', 'photos'), path.join('uploads', 'statements')]) {
-  fs.mkdirSync(path.join(ROOT, dir), { recursive: true });
+const DATA_DIR = process.env.DATA_DIR || path.join(ROOT, 'data');
+const UPLOAD_DIR = process.env.UPLOAD_DIR || path.join(ROOT, 'uploads');
+for (const dir of [DATA_DIR, path.join(UPLOAD_DIR, 'photos'), path.join(UPLOAD_DIR, 'statements')]) {
+  fs.mkdirSync(dir, { recursive: true });
 }
 
 const express = require('express');
@@ -40,7 +42,7 @@ const app = express();
 app.use(express.json());
 
 app.use(express.static(path.join(ROOT, 'public')));
-app.use('/uploads', express.static(path.join(ROOT, 'uploads')));
+app.use('/uploads', express.static(UPLOAD_DIR));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 app.use('/api', apiRouter);
