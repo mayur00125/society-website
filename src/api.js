@@ -12,7 +12,7 @@ const { isMailConfigured, sendResetEmail } = require('./mailer');
 const router = express.Router();
 const db = getDb();
 
-const UPLOAD_ROOT = path.join(__dirname, '..', 'uploads');
+const UPLOAD_ROOT = process.env.UPLOAD_DIR || path.join(__dirname, '..', 'uploads');
 const COMPLAINT_STATUSES = ['Opening', 'Pending', 'Closed'];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

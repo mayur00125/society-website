@@ -19,7 +19,7 @@ const COMPLAINT_CATEGORIES = [
   'Other',
 ];
 
-const dataDir = path.join(__dirname, '..', 'data');
+const dataDir = process.env.DATA_DIR || path.join(__dirname, '..', 'data');
 fs.mkdirSync(dataDir, { recursive: true });
 
 const db = new Database(path.join(dataDir, 'society.db'));
