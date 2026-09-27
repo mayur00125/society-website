@@ -1,0 +1,1 @@
+{"dependencies":{"bcryptjs":"^2.4.3","better-sqlite3":"^12.2.0","express":"^4.19.2","jsonwebtoken":"^9.0.2","multer":"^1.4.5-lts.1","nodemailer":"^6.9.14"},"description":"Society management website - member panel + admin panel","engines":{"node":">=18"},"main":"server.js","name":"society-website","scripts":{"start":"node server.js"},"version":"1.0.0"}

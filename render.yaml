@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: society-website
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      # Optional: uncomment and fill to enable password-reset emails
+      # - key: MAIL_HOST
+      #   value: smtp.gmail.com
+      # - key: MAIL_PORT
+      #   value: "587"
+      # - key: MAIL_USER
+      #   value: you@example.com
+      # - key: MAIL_PASS
+      #   sync: false
