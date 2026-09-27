@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Shantipriya Apartment</title>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/config.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="logo-sm" aria-hidden="true">
+      <!-- Replace this SVG with your society logo -->
+      <svg width="36" height="36" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Society logo">
+        <rect x="6" y="22" width="52" height="34" rx="3" fill="#ffffff" opacity="0.92"/>
+        <rect x="6" y="22" width="52" height="8" rx="3" fill="#0d7a6f"/>
+        <rect x="13" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="28" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="43" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="13" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="28" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="43" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="27" y="10" width="10" height="14" fill="#ffffff" opacity="0.9"/>
+        <rect x="26" y="8" width="12" height="5" rx="2" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div>
+      <h1 id="society-name">Shantipriya Apartment</h1>
+      <p class="tagline">Admin Panel</p>
+    </div>
+    <div class="header-user">
+      <span class="who" id="header-name">Admin</span>
+      <button type="button" class="btn btn-ghost btn-sm" id="logout-btn">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="card">
+    <div class="tabs" role="tablist" id="admin-tabs">
+      <button type="button" class="tab-btn active" data-tab="members" role="tab">Members</button>
+      <button type="button" class="tab-btn" data-tab="complaints" role="tab">Complaints</button>
+      <button type="button" class="tab-btn" data-tab="notices" role="tab">Notices</button>
+      <button type="button" class="tab-btn" data-tab="statements" role="tab">Statements</button>
+      <button type="button" class="tab-btn" data-tab="feedback" role="tab">Feedback</button>
+      <button type="button" class="tab-btn" data-tab="reset" role="tab">Reset Requests</button>
+    </div>
+
+    <!-- Members -->
+    <div class="tab-panel active" id="panel-members" role="tabpanel">
+      <h2>👥 Members</h2>
+      <form id="add-member-form" class="card" style="margin:12px 0;">
+        <h3 style="margin-top:0;">Add Member</h3>
+        <div class="form-row">
+          <div>
+            <label for="am-username">Username</label>
+            <input type="text" id="am-username" required>
+          </div>
+          <div>
+            <label for="am-password">Temporary password</label>
+            <input type="password" id="am-password" required>
+          </div>
+          <div>
+            <label for="am-name">Name</label>
+            <input type="text" id="am-name" required>
+          </div>
+          <div>
+            <label for="am-flat">Flat no</label>
+            <input type="text" id="am-flat" required>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button type="submit" class="btn btn-sm" id="am-btn">Add Member</button>
+        </div>
+      </form>
+      <div id="members-msg" class="msg" hidden></div>
+      <div class="table-wrap">
+        <table id="members-table">
+          <thead>
+            <tr>
+              <th>Username</th><th>Name</th><th>Flat</th>
+              <th>Prev Bal</th><th>Current</th><th>Total Due</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="members-tbody"><tr><td colspan="8">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Complaints -->
+    <div class="tab-panel" id="panel-complaints" role="tabpanel">
+      <h2>🛠️ Complaints</h2>
+      <label for="complaint-filter" style="max-width:220px;">Status filter</label>
+      <select id="complaint-filter" style="max-width:220px;">
+        <option value="">All</option>
+        <option value="Opening">Opening</option>
+        <option value="Pending">Pending</option>
+        <option value="Closed">Closed</option>
+      </select>
+      <div id="admin-complaints-list" style="margin-top:12px;"></div>
+      <div id="admin-complaints-msg" class="msg" hidden></div>
+    </div>
+
+    <!-- Notices -->
+    <div class="tab-panel" id="panel-notices" role="tabpanel">
+      <h2>📢 Notices</h2>
+      <form id="add-notice-form" class="card" style="margin:12px 0;">
+        <h3 style="margin-top:0;">Create Notice</h3>
+        <label for="notice-title">Title</label>
+        <input type="text" id="notice-title" required>
+        <label for="notice-body">Body</label>
+        <textarea id="notice-body" required></textarea>
+        <div style="margin-top:12px;">
+          <button type="submit" class="btn btn-sm" id="notice-btn">Publish Notice</button>
+        </div>
+      </form>
+      <div id="notices-msg" class="msg" hidden></div>
+      <div id="admin-notices-list"></div>
+    </div>
+
+    <!-- Statements -->
+    <div class="tab-panel" id="panel-statements" role="tabpanel">
+      <h2>🧾 Statements</h2>
+      <form id="upload-statement-form" class="card" style="margin:12px 0;">
+        <h3 style="margin-top:0;">Upload Statement (PDF)</h3>
+        <div class="form-row">
+          <div>
+            <label for="st-member">Member</label>
+            <select id="st-member" required><option value="">Loading…</option></select>
+          </div>
+          <div>
+            <label for="st-month">Month</label>
+            <input type="month" id="st-month" required>
+          </div>
+          <div>
+            <label for="st-amount">Amount</label>
+            <input type="number" id="st-amount" required min="0" step="0.01">
+          </div>
+          <div>
+            <label for="st-file">PDF file</label>
+            <input type="file" id="st-file" accept="application/pdf" required>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button type="submit" class="btn btn-sm" id="st-btn">Upload Statement</button>
+        </div>
+      </form>
+      <div id="statements-msg" class="msg" hidden></div>
+      <div id="admin-statements-list"></div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="tab-panel" id="panel-feedback" role="tabpanel">
+      <h2>💬 Feedback</h2>
+      <div id="admin-feedback-list"></div>
+      <div id="feedback-msg" class="msg" hidden></div>
+    </div>
+
+    <!-- Reset requests -->
+    <div class="tab-panel" id="panel-reset" role="tabpanel">
+      <h2>🔑 Pending Password Reset Requests</h2>
+      <div class="table-wrap">
+        <table id="reset-table">
+          <thead>
+            <tr><th>Username</th><th>Created</th><th>Expires</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="reset-tbody"><tr><td colspan="4">Loading…</td></tr></tbody>
+        </table>
+      </div>
+      <div id="reset-msg" class="msg" hidden></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">&copy; <span id="year"></span> <span id="society-name-foot">Shantipriya Apartment</span></div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member — Shantipriya Apartment</title>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/config.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="logo-sm" aria-hidden="true">
+      <!-- Replace this SVG with your society logo -->
+      <svg width="36" height="36" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Society logo">
+        <rect x="6" y="22" width="52" height="34" rx="3" fill="#ffffff" opacity="0.92"/>
+        <rect x="6" y="22" width="52" height="8" rx="3" fill="#0d7a6f"/>
+        <rect x="13" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="28" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="43" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="13" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="28" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="43" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="27" y="10" width="10" height="14" fill="#ffffff" opacity="0.9"/>
+        <rect x="26" y="8" width="12" height="5" rx="2" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div>
+      <h1 id="society-name">Shantipriya Apartment</h1>
+      <p class="tagline" id="society-tagline">Apki Society, Apki Seva</p>
+    </div>
+    <div class="header-user">
+      <span class="avatar" id="header-avatar">?</span>
+      <span class="who" id="header-name">Member</span>
+      <button type="button" class="btn btn-ghost btn-sm" id="logout-btn">Logout</button>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="container">
+    <a href="#balance">Balance</a>
+    <a href="#complaints">Raise Complaint</a>
+    <a href="#my-complaints">My Complaints</a>
+    <a href="#statements">Statements</a>
+    <a href="#notices">Notices</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#profile">Profile</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <div id="must-change-banner" class="banner" hidden>
+    ⚠️ Please set your email and change your temporary password.
+    <a href="#profile">Go to Profile &rarr;</a>
+  </div>
+
+  <!-- Balance -->
+  <section id="balance" class="card">
+    <h2>💰 My Dues</h2>
+    <div class="balance-cards">
+      <div class="balance-card">
+        <div class="lbl">Previous Balance</div>
+        <div class="amt" id="bal-prev">—</div>
+      </div>
+      <div class="balance-card">
+        <div class="lbl">Current Month Due</div>
+        <div class="amt" id="bal-current">—</div>
+      </div>
+      <div class="balance-card total">
+        <div class="lbl">Total Due</div>
+        <div class="amt" id="bal-total">—</div>
+      </div>
+    </div>
+    <div id="balance-msg" class="msg" hidden></div>
+  </section>
+
+  <!-- Raise a complaint -->
+  <section id="complaints" class="card">
+    <h2>📝 Raise a Complaint</h2>
+    <div class="tile-grid" id="complaint-tiles"></div>
+  </section>
+
+  <!-- My complaints -->
+  <section id="my-complaints" class="card">
+    <h2>📋 My Complaints</h2>
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab-btn active" data-status="Opening" role="tab">Opening</button>
+      <button type="button" class="tab-btn" data-status="Pending" role="tab">Pending</button>
+      <button type="button" class="tab-btn" data-status="Closed" role="tab">Closed</button>
+    </div>
+    <div id="complaints-list" style="margin-top:12px;"></div>
+    <div id="complaints-msg" class="msg" hidden></div>
+  </section>
+
+  <!-- Statements -->
+  <section id="statements" class="card">
+    <h2>🧾 Monthly Statements</h2>
+    <div id="statements-list"></div>
+    <div id="statements-msg" class="msg" hidden></div>
+  </section>
+
+  <!-- Notices -->
+  <section id="notices" class="card">
+    <h2>📢 Notices</h2>
+    <div id="notices-list"></div>
+    <div id="notices-msg" class="msg" hidden></div>
+  </section>
+
+  <!-- Feedback -->
+  <section id="feedback" class="card">
+    <h2>💬 Feedback</h2>
+    <form id="feedback-form">
+      <label for="feedback-text">Your feedback</label>
+      <textarea id="feedback-text" required placeholder="Share your suggestion or feedback..."></textarea>
+      <div style="margin-top:10px;">
+        <button type="submit" class="btn" id="feedback-btn">Submit Feedback</button>
+      </div>
+    </form>
+    <div id="feedback-msg" class="msg" hidden></div>
+    <h3 style="margin-top:20px;">My Feedback History</h3>
+    <div id="feedback-list"></div>
+  </section>
+
+  <!-- Profile -->
+  <section id="profile" class="card">
+    <h2>👤 Profile</h2>
+    <div class="form-row" style="align-items:flex-start;">
+      <div>
+        <span class="avatar" id="profile-avatar" style="width:96px;height:96px;font-size:2rem;">?</span>
+      </div>
+      <div style="flex:1 1 260px;">
+        <p><strong>Name:</strong> <span id="profile-name">—</span></p>
+        <p><strong>Flat No:</strong> <span id="profile-flat">—</span></p>
+        <form id="photo-form">
+          <label for="photo-input">Profile photo</label>
+          <input type="file" id="photo-input" name="photo" accept="image/*">
+          <div style="margin-top:10px;">
+            <button type="submit" class="btn btn-sm" id="photo-btn">Upload Photo</button>
+          </div>
+        </form>
+        <div id="photo-msg" class="msg" hidden></div>
+      </div>
+    </div>
+
+    <h3>Email</h3>
+    <div id="email-locked" hidden>
+      <p><strong id="profile-email-locked"></strong></p>
+      <p class="meta">Your email is linked permanently and cannot be changed.</p>
+    </div>
+    <form id="email-form" hidden>
+      <label for="email-input">Email (one-time, cannot be changed later)</label>
+      <input type="email" id="email-input" required>
+      <div style="margin-top:10px;">
+        <button type="submit" class="btn btn-sm" id="email-btn">Link Email</button>
+      </div>
+    </form>
+    <div id="email-msg" class="msg" hidden></div>
+
+    <h3>Change Password</h3>
+    <form id="password-form">
+      <label for="old-password">Old password</label>
+      <input type="password" id="old-password" required>
+      <label for="new-password">New password</label>
+      <input type="password" id="new-password" required minlength="4">
+      <label for="confirm-password">Confirm new password</label>
+      <input type="password" id="confirm-password" required minlength="4">
+      <div style="margin-top:10px;">
+        <button type="submit" class="btn" id="password-btn">Change Password</button>
+      </div>
+    </form>
+    <div id="password-msg" class="msg" hidden></div>
+  </section>
+
+</main>
+
+<!-- Complaint modal -->
+<div id="complaint-modal" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <h3 id="modal-title">Raise a Complaint</h3>
+    <p><strong>Category:</strong> <span id="modal-category"></span></p>
+    <form id="complaint-form">
+      <label for="complaint-desc">Description</label>
+      <textarea id="complaint-desc" required placeholder="Describe the issue..."></textarea>
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button type="submit" class="btn" id="complaint-btn">Submit Complaint</button>
+        <button type="button" class="btn btn-danger" id="modal-cancel">Cancel</button>
+      </div>
+    </form>
+    <div id="complaint-msg" class="msg" hidden></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">&copy; <span id="year"></span> <span id="society-name-foot">Shantipriya Apartment</span></div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/member.js"></script>
+</body>
+</html>

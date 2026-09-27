@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shantipriya Apartment</title>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/config.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div id="logo" aria-hidden="true">
+      <!-- Replace this SVG with your society logo -->
+      <svg width="44" height="44" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Society logo">
+        <rect x="6" y="22" width="52" height="34" rx="3" fill="#ffffff" opacity="0.92"/>
+        <rect x="6" y="22" width="52" height="8" rx="3" fill="#0d7a6f"/>
+        <rect x="13" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="28" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="43" y="36" width="8" height="8" fill="#0d7a6f"/>
+        <rect x="13" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="28" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="43" y="47" width="8" height="7" fill="#0d7a6f"/>
+        <rect x="27" y="10" width="10" height="14" fill="#ffffff" opacity="0.9"/>
+        <rect x="26" y="8" width="12" height="5" rx="2" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div>
+      <h1 id="society-name">Shantipriya Apartment</h1>
+      <p class="tagline" id="society-tagline">Apki Society, Apki Seva</p>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="logo-hero" aria-hidden="true">
+    <!-- Replace this SVG with your society logo -->
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Society logo">
+      <rect x="6" y="22" width="52" height="34" rx="3" fill="#0d7a6f"/>
+      <rect x="6" y="22" width="52" height="8" rx="3" fill="#0a5f57"/>
+      <rect x="13" y="36" width="8" height="8" fill="#ffffff"/>
+      <rect x="28" y="36" width="8" height="8" fill="#ffffff"/>
+      <rect x="43" y="36" width="8" height="8" fill="#ffffff"/>
+      <rect x="13" y="47" width="8" height="7" fill="#ffffff"/>
+      <rect x="28" y="47" width="8" height="7" fill="#ffffff"/>
+      <rect x="43" y="47" width="8" height="7" fill="#ffffff"/>
+      <rect x="27" y="10" width="10" height="14" fill="#0d7a6f"/>
+      <rect x="26" y="8" width="12" height="5" rx="2" fill="#0a5f57"/>
+    </svg>
+  </div>
+
+  <div class="login-wrap">
+    <div class="login-card">
+
+      <!-- Login panel -->
+      <div id="login-panel">
+        <div class="login-tabs" role="tablist">
+          <button type="button" id="tab-member" class="active" role="tab">Member Login</button>
+          <button type="button" id="tab-admin" role="tab">Admin Login</button>
+        </div>
+
+        <form id="login-form" autocomplete="off">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+          <div style="margin-top:14px;">
+            <button type="submit" class="btn" id="login-btn" style="width:100%;">Login</button>
+          </div>
+        </form>
+        <div id="login-msg" class="msg" hidden></div>
+
+        <p style="margin-top:12px;">
+          <button type="button" class="link-btn" id="forgot-link">Forgot password?</button>
+        </p>
+
+        <div class="hint-box">
+          <strong>First login?</strong> Your admin has given you a temporary password.
+          After login, go to <strong>Profile</strong> &rarr; set your email (one time) and change your password.
+        </div>
+      </div>
+
+      <!-- Forgot password panel -->
+      <div id="forgot-panel" hidden>
+        <h2 style="margin-top:0;">Forgot Password</h2>
+        <form id="forgot-form" autocomplete="off">
+          <label for="forgot-username">Username</label>
+          <input type="text" id="forgot-username" name="username" required>
+          <div style="margin-top:14px;">
+            <button type="submit" class="btn" id="forgot-btn" style="width:100%;">Send Reset Link</button>
+          </div>
+        </form>
+        <div id="forgot-msg" class="msg" hidden></div>
+        <div id="forgot-dev" hidden style="margin-top:12px;"></div>
+        <p style="margin-top:12px;">
+          <button type="button" class="link-btn" id="back-to-login-1">&larr; Back to login</button>
+        </p>
+      </div>
+
+      <!-- Reset password panel -->
+      <div id="reset-panel" hidden>
+        <h2 style="margin-top:0;">Reset Password</h2>
+        <form id="reset-form" autocomplete="off">
+          <label for="new-password">New password</label>
+          <input type="password" id="new-password" name="newPassword" required minlength="4">
+          <label for="confirm-password">Confirm new password</label>
+          <input type="password" id="confirm-password" name="confirmPassword" required minlength="4">
+          <div style="margin-top:14px;">
+            <button type="submit" class="btn" id="reset-btn" style="width:100%;">Reset Password</button>
+          </div>
+        </form>
+        <div id="reset-msg" class="msg" hidden></div>
+        <p style="margin-top:12px;">
+          <button type="button" class="link-btn" id="back-to-login-2">&larr; Back to login</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">&copy; <span id="year"></span> <span id="society-name-foot">Shantipriya Apartment</span></div>
+</footer>
+
+<script src="/js/common.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = window.Common;
+
+  // Apply config
+  if (window.CONFIG) {
+    document.title = window.CONFIG.societyName;
+    document.getElementById('society-name').textContent = window.CONFIG.societyName;
+    document.getElementById('society-tagline').textContent = window.CONFIG.tagline || '';
+    document.getElementById('society-name-foot').textContent = window.CONFIG.societyName;
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var role = 'member'; // remembered login tab
+
+  var loginPanel = document.getElementById('login-panel');
+  var forgotPanel = document.getElementById('forgot-panel');
+  var resetPanel = document.getElementById('reset-panel');
+
+  function showPanel(which) {
+    loginPanel.hidden = which !== 'login';
+    forgotPanel.hidden = which !== 'forgot';
+    resetPanel.hidden = which !== 'reset';
+  }
+
+  // Tabs: Member / Admin login (role is remembered; both POST to same endpoint)
+  var tabMember = document.getElementById('tab-member');
+  var tabAdmin = document.getElementById('tab-admin');
+  tabMember.addEventListener('click', function () {
+    role = 'member';
+    tabMember.classList.add('active');
+    tabAdmin.classList.remove('active');
+  });
+  tabAdmin.addEventListener('click', function () {
+    role = 'admin';
+    tabAdmin.classList.add('active');
+    tabMember.classList.remove('active');
+  });
+
+  // Already logged in? bounce to the right page
+  (function () {
+    var u = C.getUser();
+    try {
+      if (u && localStorage.getItem('sw_token')) {
+        window.location.href = u.role === 'admin' ? '/admin.html' : '/member.html';
+      }
+    } catch (e) {}
+  })();
+
+  // Login
+  var loginMsg = document.getElementById('login-msg');
+  document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value;
+    var btn = document.getElementById('login-btn');
+    btn.disabled = true;
+    C.showMsg(loginMsg, '', 'err');
+    C.api('POST', '/api/auth/login', { username: username, password: password })
+      .then(function (data) {
+        C.saveAuth(data.token, data.user);
+        window.location.href = data.user.role === 'admin' ? '/admin.html' : '/member.html';
+      })
+      .catch(function (err) {
+        C.showMsg(loginMsg, err.message || 'Login failed', 'err');
+        btn.disabled = false;
+      });
+  });
+
+  // Forgot password
+  document.getElementById('forgot-link').addEventListener('click', function () { showPanel('forgot'); });
+  document.getElementById('back-to-login-1').addEventListener('click', function () { showPanel('login'); });
+  document.getElementById('back-to-login-2').addEventListener('click', function () { showPanel('login'); });
+
+  var forgotMsg = document.getElementById('forgot-msg');
+  var forgotDev = document.getElementById('forgot-dev');
+  document.getElementById('forgot-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var username = document.getElementById('forgot-username').value.trim();
+    var btn = document.getElementById('forgot-btn');
+    btn.disabled = true;
+    C.showMsg(forgotMsg, '', 'err');
+    forgotDev.hidden = true;
+    forgotDev.innerHTML = '';
+    C.api('POST', '/api/auth/forgot', { username: username })
+      .then(function (data) {
+        C.showMsg(forgotMsg, data.message || 'Request received.', 'success');
+        if (data.devResetLink) {
+          forgotDev.hidden = false;
+          var p = document.createElement('p');
+          p.innerHTML = '<strong>Development mode:</strong> SMTP not configured. Use this reset link:<br>';
+          var a = document.createElement('a');
+          a.href = data.devResetLink;
+          a.className = 'dev-link';
+          a.textContent = 'Reset my password';
+          p.appendChild(a);
+          forgotDev.appendChild(p);
+        }
+        btn.disabled = false;
+      })
+      .catch(function (err) {
+        C.showMsg(forgotMsg, err.message || 'Request failed', 'err');
+        btn.disabled = false;
+      });
+  });
+
+  // Reset via ?reset=TOKEN
+  var params = new URLSearchParams(window.location.search);
+  var resetToken = params.get('reset');
+  var resetMsg = document.getElementById('reset-msg');
+  if (resetToken) { showPanel('reset'); }
+
+  document.getElementById('reset-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var np = document.getElementById('new-password').value;
+    var cp = document.getElementById('confirm-password').value;
+    if (np !== cp) { C.showMsg(resetMsg, 'Passwords do not match.', 'err'); return; }
+    var btn = document.getElementById('reset-btn');
+    btn.disabled = true;
+    C.api('POST', '/api/auth/reset', { token: resetToken, newPassword: np })
+      .then(function (data) {
+        C.showMsg(resetMsg, data.message || 'Password reset successfully.', 'success');
+        btn.disabled = false;
+      })
+      .catch(function (err) {
+        C.showMsg(resetMsg, err.message || 'Reset failed', 'err');
+        btn.disabled = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>
